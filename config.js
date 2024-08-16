@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+import { getAuth, signOut, createUserWithEmailAndPassword, onAuthStateChanged ,  signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
 import { getDocs, collection, addDoc, getFirestore, query, where } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
@@ -13,10 +13,26 @@ const firebaseConfig = {
   measurementId: "G-X69HKEE04N"
 };
 
-const app = initializeApp(firebaseConfig);
 
+
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { auth, getAuth ,  db, storage, onAuthStateChanged, signInWithEmailAndPassword  ,  signOut, createUserWithEmailAndPassword, getDocs, collection, addDoc, ref, uploadBytes, getDownloadURL };
+export { auth, db, storage, signInWithEmailAndPassword, getAuth , onAuthStateChanged , signOut, createUserWithEmailAndPassword, getDocs, collection, addDoc, ref, uploadBytes, getDownloadURL };
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      if (window.location.pathname !== '/index.html') {
+        window.location.href = "index.html";
+      }
+    } else {
+      if (window.location.pathname !== '/allblog.html' && window.location.pathname !== '/login.html') {
+        window.location.href = "allblog.html";
+      }
+    }
+  });
+});

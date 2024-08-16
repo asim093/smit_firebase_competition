@@ -2,6 +2,9 @@ import { auth, signInWithEmailAndPassword, getAuth } from "./config.js";
 
 const loginBtn = document.getElementById('login');
 
+
+
+
 loginBtn.addEventListener('click', (event) => {
     event.preventDefault();
 

@@ -1,5 +1,11 @@
 import { auth, createUserWithEmailAndPassword } from "./config.js";
 
+import { getAuth, onAuthStateChanged } from "./config.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+  
+});
+
 const registerBtn = document.getElementById('register');
 registerBtn.addEventListener('click', (event) => {
     event.preventDefault();
